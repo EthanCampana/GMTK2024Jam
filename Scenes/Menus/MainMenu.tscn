@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5wx2oj8pcn67"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="1_cbycq"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_cbycq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Start
+"
+
+[node name="Settings" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_constants/margin_top = 50
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "ver. 0.0.1a"
+horizontal_alignment = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Quit" to="." method="_on_quit_pressed"]
