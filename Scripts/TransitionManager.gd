@@ -42,5 +42,3 @@ func transition_out():
 		"slideIn":
 			l_slide.visible = false 
 			r_slide.visible = false 
-
-

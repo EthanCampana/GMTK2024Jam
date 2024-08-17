@@ -23,6 +23,8 @@ var canJump = true
 @export var speed : float = 100
 @export var state : PlayerState = null
 
+var spawn_location : Vector2 = self.global_position
+
 func get_state()-> PlayerState:
 	return state
 
@@ -31,12 +33,12 @@ signal change_state(state_name: String, msg: Dictionary)
 
 
 ## Determines which gravity to use
-func get_gravity()-> float:
+func get_player_gravity() -> float:
 	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
 ## Applies the gravity to the player's y velocity
 func apply_gravity(delta: float):
-	velocity.y += get_gravity() * delta
+	velocity.y += get_player_gravity() * delta
 
 ## Handles the player's velocity x movement
 func handle_movement():

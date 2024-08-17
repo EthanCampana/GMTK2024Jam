@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="GMTK2024Jam"
+run/main_scene="res://Scenes/Menus/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Settings="*res://Scripts/AutoLoads/Settings.gd"
+TransitionManager="*res://Scenes/TransitionManager.tscn"
 
 [editor_plugins]
 
