@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjo4qilvsdqo"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/settings_menu.gd" id="1_drivg"]
+
+[node name="SettingsMenu" type="CanvasLayer"]
+script = ExtResource("1_drivg")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelContainer"]
+self_modulate = Color(0.384314, 1, 0.254902, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel"]
+layout_mode = 2
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Label" type="Label" parent="PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Settings
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 50
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/Panel/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Music volume                  "
+
+[node name="Music Volume" type="HSlider" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "SFX Volume
+"
+
+[node name="SFX Volume" type="HSlider" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Window  Mode
+"
+
+[node name="WindowMode" type="OptionButton" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+text = "Screen Size
+"
+
+[node name="ScreenSize" type="OptionButton" parent="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="PanelContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Exit
+"
+
+[connection signal="value_changed" from="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer/Music Volume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer/SFX Volume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="item_selected" from="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer/WindowMode" to="." method="_on_window_mode_item_selected"]
+[connection signal="item_selected" from="PanelContainer/Panel/VBoxContainer/MarginContainer/GridContainer/ScreenSize" to="." method="_on_screen_size_item_selected"]
+[connection signal="pressed" from="PanelContainer/Panel/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
