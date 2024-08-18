@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://doru2kj8itknd"]
+[gd_scene load_steps=20 format=3 uid="uid://doru2kj8itknd"]
 
 [ext_resource type="Script" path="res://Scripts/Commands/player.gd" id="1_h462f"]
 [ext_resource type="Texture2D" uid="uid://btuyca1ol22j7" path="res://Assets/temporary player/04-Fall/Fall 01.png" id="1_rxkqt"]
@@ -88,17 +88,29 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gx36k"]
 size = Vector2(19, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a7bt7"]
+size = Vector2(10, 40)
+
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.3, 1.3)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_h462f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_mrkve")
-animation = &"idle"
-frame_progress = 0.0542354
+animation = &"fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 scale = Vector2(1.3, 1.3)
 shape = SubResource("RectangleShape2D_gx36k")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.384615, 10)
+shape = SubResource("RectangleShape2D_a7bt7")

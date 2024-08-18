@@ -15,7 +15,12 @@ func _update(delta: float):
 
 func _physics_update(delta: float):
     player.handle_state(delta)
+
+    if not player.isAlive:
+        player.emit_signal("change_state","Death",{})
+
     if player.velocity.x == 0:
         player.emit_signal("change_state","Idle",{})
+        
     elif player.velocity.y >= 0 and not player.is_not_on_floor():
         player.emit_signal("change_state", "Air",{"fall":true})

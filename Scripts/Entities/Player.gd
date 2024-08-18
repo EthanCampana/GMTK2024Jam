@@ -17,13 +17,18 @@ var _controller : PlayerController
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 @onready var variable_jump_gravity: float = ((jump_velocity ** 2) / (2 * jump_height)) * -1
 
+
+##  The player's weight interacts with the enviroment of the game
+var weight : float = 100.0
+
 ## Self explanatory 
 var canJump = true
+var spawn_location : Vector2 = self.global_position
+var isAlive = true
 @export var acceleration: float = 1000
 @export var speed : float = 100
 @export var state : PlayerState = null
 
-var spawn_location : Vector2 = self.global_position
 
 func get_state()-> PlayerState:
 	return state
