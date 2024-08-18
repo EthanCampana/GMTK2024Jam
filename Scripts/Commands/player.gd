@@ -99,3 +99,17 @@ func change_stat_value(change: int) -> void:
 	elif current_stat == Stats.WEIGHT and change_func.call(weight_multiplier):
 		weight_multiplier += change
 		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
+		
+
+
+func _on_area_2d_body_entered(body:Node2D) -> void:
+	if body is DynamicTileMapLayer:
+		body.has_entered_dyanmic_tile = true
+		body.player = self
+
+
+
+func _on_area_2d_body_exited(body:Node2D) -> void:
+	if body is DynamicTileMapLayer:
+		body.has_entered_dyanmic_tile = false 
+		body.player = null 
