@@ -26,28 +26,28 @@ const WINDOW_SIZE : Dictionary = {
 }
 
 func _ready():
-    settingsData = SettingsData.load_or_create()
-    set_window_mode(settingsData.Window_Mode)
-    DisplayServer.window_set_size(WINDOW_SIZE.values()[settingsData.Window_Size])
-    AudioServer.set_bus_volume_db(SFX_BUS_ID, linear_to_db(settingsData.sfx_volume))
-    AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db( settingsData.music_volume) )
+	settingsData = SettingsData.load_or_create()
+	set_window_mode(settingsData.Window_Mode)
+	DisplayServer.window_set_size(WINDOW_SIZE.values()[settingsData.Window_Size])
+	AudioServer.set_bus_volume_db(SFX_BUS_ID, linear_to_db(settingsData.sfx_volume))
+	AudioServer.set_bus_volume_db(MUSIC_BUS_ID, linear_to_db( settingsData.music_volume) )
 
 func set_window_mode(index: int):
-    match index:
-        # Window Mode
-        0:
-            DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-            DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
-        # Borderless Window
-        1:
-            DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-            DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
-        # Full-Screen
-        2:
-            DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-            DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
-        # Borderless Full-Screen	
-        3:
-            DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-            DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
+	match index:
+		# Window Mode
+		0:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
+		# Borderless Window
+		1:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
+		# Full-Screen
+		2:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
+		# Borderless Full-Screen	
+		3:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,true)
 		
