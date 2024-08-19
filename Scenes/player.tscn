@@ -95,8 +95,10 @@ script = ExtResource("1_h462f")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
 sprite_frames = SubResource("SpriteFrames_mrkve")
-animation = &"idle"
-frame_progress = 0.0542354
+animation = &"jump"
+autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
