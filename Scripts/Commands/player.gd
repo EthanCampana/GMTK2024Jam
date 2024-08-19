@@ -8,12 +8,30 @@ enum Stats {SPEED = 0, JUMP = 1, WEIGHT = 2}
 @export var weight_multiplier: int = 0
 @export var current_stat: Stats = Stats.SPEED
 @export var TOTAL_POINTS: int = 4
+@onready var label: Label = $Label
+## Declares the maximum jump height for the player and also the time it takes to reach the peak of the jump and back to the ground again.
+@export var jump_height: float = 32 + (8 * jump_force_multiplier) 
+var jump_time_to_peak: float = 0.3
+var jump_time_to_descent: float = 0.5 + -((BASE_WEIGHT * weight_multiplier) / 6000)
+## Calculate the jump velocity and gravity based on the jump height and time to peak.
+## Gravity is detirmined by the jump height and time to peak.
+@onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak)* -1
+@onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
+@onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
 var BASE_SPEED: int = 180
 var BASE_JUMP_FORCE: int = 255
 var BASE_GRAVITY: int = 900
 var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
+
+func _ready() -> void:
+	label.text = str(current_stat)
+	print(self.jump_velocity)
+
+## Determines which gravity to use
+func get_player_gravity() -> float:
+	return jump_gravity if velocity.y < 0.0 else fall_gravity
 
 func _physics_process(delta):
 	""" Handles all the input functionalities and physics """
@@ -36,13 +54,13 @@ func _physics_process(delta):
 	
 	# Gravity
 	if not is_on_floor():
-		velocity.y += BASE_GRAVITY * delta
+		velocity.y += self.get_player_gravity() * delta
 		if velocity.y > 0:
 			$AnimatedSprite2D.play("fall")
 	
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y -= BASE_JUMP_FORCE - (0.1 * BASE_WEIGHT)
+		velocity.y = jump_velocity 
 		$AnimatedSprite2D.play("jump")
 		
 	# Scroll through the stats
@@ -53,8 +71,12 @@ func _physics_process(delta):
 		
 	# increase or decrease stat
 	if Input.is_action_just_pressed("decrease"):
+		print("decrease")
+		print(TOTAL_POINTS)
 		change_stat_value(-1)
 	elif Input.is_action_just_pressed("increase"):
+		print("increase")
+		print(TOTAL_POINTS)
 		change_stat_value(1)
 	move_and_slide()
 
@@ -67,6 +89,7 @@ func set_stat_to_change(vertical_direction: int) -> void:
 		normalized_index += STAT_COUNT
 	
 	current_stat = normalized_index
+	label.text = str(current_stat)
 	UiController.emit_signal("stat_selection_changed",current_stat)
 
 func get_total_points_allocated() -> int:
@@ -91,13 +114,17 @@ func change_stat_value(change: int) -> void:
 	"""
 	var change_func: Callable = can_increase_stat if change == 1 else can_decrease_stat
 	if current_stat == Stats.SPEED and change_func.call(speed_multiplier):
-		speed_multiplier += change
+		self.speed_multiplier += change
 		UiController.emit_signal("stat_changed", Stats.SPEED, speed_multiplier)
 	elif current_stat == Stats.JUMP and change_func.call(jump_force_multiplier):
-		jump_force_multiplier += change
+		self.jump_force_multiplier += change
+		self.jump_height = 32 + (8 * self.jump_force_multiplier)
+		self.jump_velocity = ((2.0 * self.jump_height) / self.jump_time_to_peak) * -1
 		UiController.emit_signal("stat_changed", Stats.JUMP, jump_force_multiplier)
 	elif current_stat == Stats.WEIGHT and change_func.call(weight_multiplier):
-		weight_multiplier += change
+		self.weight_multiplier += change
+		self.jump_time_to_descent = 0.5 + -((BASE_WEIGHT * self.weight_multiplier) / 600.0)
+		self.fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
 		
 
