@@ -14,15 +14,17 @@ gradient = SubResource("Gradient_t1ild")
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 652.0
-offset_bottom = 504.0
+offset_right = 1308.0
+offset_bottom = 782.0
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
-offset_right = 650.0
-offset_bottom = 508.0
+layout_mode = 0
+offset_right = 3414.0
+offset_bottom = 1652.0
 texture = SubResource("GradientTexture2D_0x10f")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 0
 offset_left = 114.0
 offset_top = 212.0
 offset_right = 622.0

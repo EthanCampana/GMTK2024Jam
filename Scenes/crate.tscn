@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cwi0fnvtmn5jy"]
+[gd_scene load_steps=11 format=3 uid="uid://cwi0fnvtmn5jy"]
 
 [ext_resource type="Texture2D" uid="uid://g8rjdwpaxado" path="res://Assets/crate.png" id="1_nncq8"]
 [ext_resource type="Script" path="res://Scripts/crate.gd" id="2_n2r3p"]
+[ext_resource type="AudioStream" uid="uid://cac6kp4jx4eqg" path="res://Assets/music/Block Break 1.wav" id="3_nouhc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2aeur"]
 atlas = ExtResource("1_nncq8")
@@ -74,3 +75,7 @@ autoplay = "default"
 position = Vector2(1.25, 3.25)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_58tjl")
+
+[node name="breakAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nouhc")
+volume_db = -14.967

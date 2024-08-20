@@ -1,17 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5wx2oj8pcn67"]
+[gd_scene load_steps=8 format=3 uid="uid://c5wx2oj8pcn67"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/MainMenu.gd" id="1_cbycq"]
+[ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="2_2pxit"]
+[ext_resource type="Texture2D" uid="uid://dss8i83dpj1s6" path="res://Assets/UI/play.tres" id="3_kwmqg"]
+[ext_resource type="Texture2D" uid="uid://cagcpsjilibqu" path="res://Assets/Logo_Horizontal.png" id="4_gk4pe"]
+
+[sub_resource type="Theme" id="Theme_2grlx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nj1h0"]
+texture = ExtResource("2_2pxit")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3behj"]
+texture = ExtResource("3_kwmqg")
 
 [node name="StartScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_cbycq")
 
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_2grlx")
+theme_override_styles/panel = SubResource("StyleBoxTexture_nj1h0")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_top = 180.0
+offset_top = 299.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 479.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -23,14 +47,16 @@ layout_mode = 2
 
 [node name="Start" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Start
-"
+theme_override_styles/normal = SubResource("StyleBoxTexture_3behj")
+icon = ExtResource("3_kwmqg")
 
 [node name="Settings" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer/HBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "Quit
 "
@@ -45,6 +71,15 @@ theme_override_constants/margin_top = 50
 layout_mode = 2
 text = "ver. 0.0.1a"
 horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer/Label"]
+visible = false
+layout_mode = 0
+offset_left = -266.0
+offset_top = -258.0
+offset_right = 1051.0
+offset_bottom = -69.0
+texture = ExtResource("4_gk4pe")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/GridContainer/Settings" to="." method="_on_settings_pressed"]

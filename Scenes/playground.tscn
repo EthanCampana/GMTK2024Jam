@@ -30,11 +30,6 @@ label_settings = SubResource("LabelSettings_v2120")
 
 [node name="Player" parent="." instance=ExtResource("3_deddc")]
 position = Vector2(-250, 2)
-speed_multiplier = 0
-jump_force_multiplier = 0
-weight_multiplier = 0
-current_stat = 0
-TOTAL_POINTS = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -284
