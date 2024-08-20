@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://cakagwjp1csjo"]
 
 [ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="1_c2t36"]
-[ext_resource type="PackedScene" path="res://Scenes/dynamic_tile_map_layer.tscn" id="1_jc22q"]
+[ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="1_jc22q"]
 [ext_resource type="PackedScene" uid="uid://doru2kj8itknd" path="res://Scenes/player.tscn" id="3_deddc"]
 [ext_resource type="FontFile" uid="uid://day3wrs7kmuab" path="res://Assets/FFFFORWA.TTF" id="4_sj8nr"]
 [ext_resource type="PackedScene" uid="uid://crf4a3if4ugyh" path="res://Scenes/UIs/u_interface.tscn" id="5_fo1yb"]
@@ -30,11 +30,6 @@ label_settings = SubResource("LabelSettings_v2120")
 
 [node name="Player" parent="." instance=ExtResource("3_deddc")]
 position = Vector2(-250, 2)
-speed_multiplier = 0
-jump_force_multiplier = 0
-weight_multiplier = 0
-current_stat = 0
-TOTAL_POINTS = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -284

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+var isAlive = true
 enum Stats {SPEED = 0, JUMP = 1, WEIGHT = 2}
 # These are values that can change based on the stats
 @export var speed_multiplier: int = 0
@@ -20,6 +21,11 @@ var jump_time_to_descent: float = 0.5 + -((BASE_WEIGHT * weight_multiplier) / 60
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 
+
+@onready var jumpAudio = $JumpAudio
+@onready var loopAudio = $LoopAudio
+@onready var selectAudio = $selectAudio
+
 var BASE_SPEED: int = 180
 var BASE_JUMP_FORCE: int = 255
 var BASE_GRAVITY: int = 900
@@ -27,8 +33,10 @@ var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
 
 func _ready() -> void:
-	label.text = str(current_stat)
+	#label.text = str(current_stat)
 	UiController.emit_signal("stat_start", TOTAL_POINTS)
+	
+	
 var current_weight: int = BASE_WEIGHT 
 
 ## Determines which gravity to use
@@ -65,12 +73,15 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity 
 		$AnimatedSprite2D.play("jump")
+		jumpAudio.play()
 		
 	# Scroll through the stats
 	if Input.is_action_just_pressed("stat_up"):
 		set_stat_to_change(-1)
+		selectAudio.play()
 	elif Input.is_action_just_pressed("stat_down"):
 		set_stat_to_change(1)
+		selectAudio.play()
 		
 	# increase or decrease stat
 	if Input.is_action_just_pressed("decrease"):

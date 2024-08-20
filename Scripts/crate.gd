@@ -3,6 +3,7 @@ class_name Crate
 
 var max_weight: int = 120 
 @onready var crate: AnimatedSprite2D = $Crate
+@onready var breakAudio = $breakAudio
 var P : Player = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,9 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if  P != null:
 		if P.current_weight > max_weight:
-			crate.play("Break") 
+			crate.play("Break")
+			breakAudio.play()
 			await crate.animation_finished
 			queue_free()
-
-
-
