@@ -1,4 +1,5 @@
 extends TileMapLayer
+class_name  DynamicTileMapLayer
 @onready var timer: Timer = $Timer
 
 # Gets Set to True when the Player has entered the Dynamic Tile.
