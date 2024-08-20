@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://doru2kj8itknd"]
+[gd_scene load_steps=21 format=3 uid="uid://qtsmdeydb57x"]
 
 [ext_resource type="Script" path="res://Scripts/Commands/player.gd" id="1_h462f"]
 [ext_resource type="Texture2D" uid="uid://btuyca1ol22j7" path="res://Assets/temporary player/04-Fall/Fall 01.png" id="1_rxkqt"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://d2eev7umc0f5j" path="res://Assets/temporary player/02-Run/Run 04.png" id="8_ppg5v"]
 [ext_resource type="Texture2D" uid="uid://dspvlynv2st3p" path="res://Assets/temporary player/02-Run/Run 05.png" id="9_u6r6q"]
 [ext_resource type="Texture2D" uid="uid://b8aasq5i75n62" path="res://Assets/temporary player/02-Run/Run 06.png" id="10_h4t3q"]
+[ext_resource type="AudioStream" uid="uid://bpd7g6sj7bk2e" path="res://Assets/Sounds/Jump 1.wav" id="17_3fbk2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mrkve"]
 animations = [{
@@ -96,11 +97,6 @@ scale = Vector2(1.3, 1.3)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_h462f")
-speed_multiplier = null
-jump_force_multiplier = null
-weight_multiplier = null
-current_stat = null
-TOTAL_POINTS = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.3, 1.3)
@@ -126,3 +122,5 @@ offset_bottom = 23.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_3fbk2")

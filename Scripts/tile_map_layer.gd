@@ -16,5 +16,3 @@ func _ready() -> void:
 # If the Player is overweight for the tile, the tile will be erased.
 func _on_timer_timeout() -> void:
 	self.erase_cell(self.player_pos)
-
-

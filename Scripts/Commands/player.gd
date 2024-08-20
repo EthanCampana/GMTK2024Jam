@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 enum Stats {SPEED = 0, JUMP = 1, WEIGHT = 2}
+
 # These are values that can change based on the stats
 @export var speed_multiplier: int = 0
 @export var jump_force_multiplier: int = 0
@@ -19,9 +20,10 @@ var jump_time_to_descent: float = 0.5 + -((BASE_WEIGHT * weight_multiplier) / 60
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak)* -1
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+@onready var audio = $AudioStreamPlayer2D
 
 var BASE_SPEED: int = 180
-var BASE_JUMP_FORCE: int = 255
+var BASE_JUMP_FORCE: int = 2551
 var BASE_GRAVITY: int = 900
 var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
@@ -60,6 +62,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity 
 		$AnimatedSprite2D.play("jump")
+		self.audio.play()
 		
 	# Scroll through the stats
 	if Input.is_action_just_pressed("stat_up"):

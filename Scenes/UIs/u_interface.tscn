@@ -52,6 +52,24 @@ texture = ExtResource("2_n863o")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
 [node name="SpeedBxStat" type="HBoxContainer" parent="Background/StatsContainer"]
 z_index = 2
 layout_mode = 2
@@ -71,6 +89,27 @@ texture = ExtResource("2_n863o")
 expand_mode = 3
 stretch_mode = 4
 
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat/StatOrb3"]
+layout_mode = 2
+offset_left = 18.0
+offset_right = 32.0
+offset_bottom = 21.0
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
 [node name="WeightBxStat" type="HBoxContainer" parent="Background/StatsContainer"]
 z_index = 2
 layout_mode = 2
@@ -86,6 +125,27 @@ text = "WEIGHT:
 "
 
 [node name="StatOrb" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+visible = false
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
 layout_mode = 2
 texture = ExtResource("2_n863o")
 expand_mode = 3

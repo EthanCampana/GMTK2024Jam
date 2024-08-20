@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bk5ijrdij35b1"]
+
+[ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="1_nd2kd"]
+[ext_resource type="PackedScene" uid="uid://qtsmdeydb57x" path="res://Scenes/player.tscn" id="2_ci1f5"]
+[ext_resource type="PackedScene" uid="uid://crf4a3if4ugyh" path="res://Scenes/UIs/u_interface.tscn" id="3_gc71f"]
+
+[node name="World_Template" type="Node2D"]
+
+[node name="Tilemap" parent="." instance=ExtResource("1_nd2kd")]
+
+[node name="Player" parent="." instance=ExtResource("2_ci1f5")]
+position = Vector2(204, 295)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UInterface" parent="UI" instance=ExtResource("3_gc71f")]

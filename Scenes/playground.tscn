@@ -2,13 +2,14 @@
 
 [ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="1_c2t36"]
 [ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="1_jc22q"]
-[ext_resource type="PackedScene" uid="uid://doru2kj8itknd" path="res://Scenes/player.tscn" id="3_deddc"]
+[ext_resource type="PackedScene" uid="uid://qtsmdeydb57x" path="res://Scenes/player.tscn" id="3_deddc"]
 [ext_resource type="FontFile" uid="uid://day3wrs7kmuab" path="res://Assets/FFFFORWA.TTF" id="4_sj8nr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v2120"]
 font = ExtResource("4_sj8nr")
 
 [node name="Playground" type="Node2D"]
+position = Vector2(-1, -3)
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(358, -154)
@@ -30,7 +31,6 @@ label_settings = SubResource("LabelSettings_v2120")
 
 [node name="Player" parent="." instance=ExtResource("3_deddc")]
 position = Vector2(-250, 2)
-scale = Vector2(1.3, 1.3)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = -284

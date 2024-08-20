@@ -6,29 +6,28 @@ func _ready() -> void:
 	set_anchor_mode(Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT)
 	var zoom_vector = get_camera_zoom_to_tilemap()
 	set_zoom(zoom_vector)
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-
-func get_camera_zoom_to_tilemap():
-	var viewport_size = get_viewport().size # [x,y]
+# Function to determine the camera zoom based on the tilemap layer
+func get_camera_zoom_to_tilemap() -> Vector2:
+	var viewport_size = get_viewport().size  # [x,y]
 	var tilemap_info = get_tilemap_info()
-	var level_size = Vector2i(tilemap_info.tile_size * tilemap_info.size)
-	
-	var viewport_aspect = viewport_size[0] / viewport_size[1]
-	var level_aspect = float(level_size.x / level_size.y)
-	
+	var level_size = Vector2(tilemap_info["tile_size"].x * tilemap_info["size"].x,
+							 tilemap_info["tile_size"].y * tilemap_info["size"].y)
+
+	var viewport_aspect = viewport_size.x / viewport_size.y
+	var level_aspect = float(level_size.x) / float(level_size.y)
+
 	var new_zoom = 1.0
-	
+
 	if level_aspect > viewport_aspect:
-		new_zoom = float(viewport_size[1]) / level_size.y
+		new_zoom = viewport_size.y / level_size.y
 	else:
-		new_zoom = float(viewport_size[0]) / level_size.x
-		
+		new_zoom = viewport_size.x / level_size.x
+
 	return Vector2(new_zoom, new_zoom)
 
 func get_tilemap_info():
@@ -41,11 +40,5 @@ func get_tilemap_info():
 		tilemap_rect.end.x - tilemap_rect.position.x,
 		tilemap_rect.end.y - tilemap_rect.position.y
 	)
-	
+
 	return {"size": tilemap_size, "tile_size": tile_size}
-	
-	
-	
-	
-	
-	
