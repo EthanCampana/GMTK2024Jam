@@ -1,20 +1,16 @@
-extends Control # or Control
+extends Control
 
-# Current highlighted index
 var current_stat_index: int = 0  # Start with the first stat highlighted
 var num_stats: int = 3  # Total number of stats
+var total_stat_points: int = 4
 
 func _ready():
-	# Ensure CurrentStatHighlight is visible and in the right position
-	$Background/StatsContainer/CurrentStatHightlight.visible = true  # Ensure highlight is visible
-	update_highlight()  # Update highlight position
-
-func _process(delta):
-	# Handle input detection for arrow keys
-	if Input.is_action_just_pressed("ui_up"):
-		move_highlight(-1)
-	elif Input.is_action_just_pressed("ui_down"):
-		move_highlight(1)
+	# Connect signals
+	UiController.connect("stat_selection_changed", _on_stat_selection_changed)
+	UiController.connect("stat_start", _on_stat_start)
+	UiController.connect("stat_changed", _on_stat_changed)
+	hide_all_orbs()
+	update_highlight()
 
 func move_highlight(direction: int):
 	# Update current_stat_index based on input direction
@@ -25,14 +21,46 @@ func move_highlight(direction: int):
 
 func update_highlight():
 	# Get the HBoxContainer for the current stat
-	var stat_container = $Background/StatsContainer.get_child(current_stat_index )  # +2 to skip TitleLabel and get to the first stat
+	var stat_container = $Background/StatsContainer.get_child(current_stat_index)
 	
+	for node in $Background/StatsContainer.get_children(true):
+		if node.get_child_count() == 0:
+			continue
+		var lab: Label = node.get_child(0)
+		lab.add_theme_color_override("font_color", Color.WHITE)
 	# Ensure the reference is valid
 	if stat_container:
-		# Set CurrentStatHighlight to the correct position
-		var highlight_position = stat_container.position  # Get the position of the selected stat
-		$Background/StatsContainer/CurrentStatHightlight.position = highlight_position
-		# Center the highlight on the stat if necessary
-		# Assuming you want to center it, you can subtract half of the width of the highlight here if needed
+		var label: Label = stat_container.get_child(0)
+		label.add_theme_color_override("font_color", Color.YELLOW)
 	else:
 		print("Error: Stat container not found.")
+		
+func render_orbs(current_stat_index: int, orb_numbers: int) -> void:
+	var stat_container: Node = $Background/StatsContainer.get_child(current_stat_index)
+	var remaining = total_stat_points - orb_numbers
+	
+	for index in range(orb_numbers):
+		stat_container.get_child(index + 1).visible = true
+		
+	for index in range(remaining):
+		stat_container.get_child(total_stat_points - index).visible = false
+	update_highlight()
+
+func _on_stat_selection_changed(stat_index: int) -> void:
+	current_stat_index = stat_index
+	update_highlight()
+	
+func _on_stat_changed(new_value: int) -> void:
+	render_orbs(current_stat_index, new_value)
+	
+func _on_stat_start(stat_values: int) -> void:
+	print(stat_values)
+		
+func hide_all_orbs() -> void:
+	var nodes = $Background/StatsContainer.get_children()
+	
+	for i in range(num_stats):
+		var node = nodes[i]
+		if node.get_child_count() > 0:
+			for j in range(1, 5):
+				node.get_child(j).visible = false

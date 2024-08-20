@@ -1,4 +1,5 @@
 extends TileMapLayer
+class_name  DynamicTileMapLayer
 @onready var timer: Timer = $Timer
 
 # Gets Set to True when the Player has entered the Dynamic Tile.
@@ -16,5 +17,3 @@ func _ready() -> void:
 # If the Player is overweight for the tile, the tile will be erased.
 func _on_timer_timeout() -> void:
 	self.erase_cell(self.player_pos)
-
-

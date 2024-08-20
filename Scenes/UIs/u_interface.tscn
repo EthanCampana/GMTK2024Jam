@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://crf4a3if4ugyh"]
+[gd_scene load_steps=5 format=3 uid="uid://crf4a3if4ugyh"]
 
 [ext_resource type="Texture2D" uid="uid://d3sm0ah7syh5e" path="res://Assets/Game-Assets/UI/ui_panel.tres" id="1_4548y"]
 [ext_resource type="Script" path="res://Scripts/UI/ui_interface.gd" id="1_kvyg8"]
 [ext_resource type="FontFile" uid="uid://dg7ty0kbviu0" path="res://Assets/Fonts/FFFFORWA.TTF" id="2_jcef5"]
 [ext_resource type="Texture2D" uid="uid://bmse4mdwcrphb" path="res://Assets/Game-Assets/UI/UI-Stat-point.png" id="2_n863o"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_2vchw"]
 
 [node name="UInterface" type="Control"]
 layout_mode = 3
@@ -33,31 +31,13 @@ offset_bottom = 159.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 
-[node name="JumpBxStat" type="HBoxContainer" parent="Background/StatsContainer"]
-z_index = 2
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Background/StatsContainer/JumpBxStat"]
-layout_mode = 2
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 1
-theme_override_fonts/font = ExtResource("2_jcef5")
-theme_override_font_sizes/font_size = 15
-text = "JUMP:"
-
-[node name="StatOrb" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
-layout_mode = 2
-texture = ExtResource("2_n863o")
-expand_mode = 3
-stretch_mode = 4
-
 [node name="SpeedBxStat" type="HBoxContainer" parent="Background/StatsContainer"]
 z_index = 2
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Background/StatsContainer/SpeedBxStat"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 1
@@ -65,7 +45,63 @@ theme_override_fonts/font = ExtResource("2_jcef5")
 theme_override_font_sizes/font_size = 15
 text = "SPEED:"
 
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
 [node name="StatOrb" type="TextureRect" parent="Background/StatsContainer/SpeedBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="JumpBxStat" type="HBoxContainer" parent="Background/StatsContainer"]
+z_index = 2
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_jcef5")
+theme_override_font_sizes/font_size = 15
+text = "JUMP:"
+
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb" type="TextureRect" parent="Background/StatsContainer/JumpBxStat"]
 layout_mode = 2
 texture = ExtResource("2_n863o")
 expand_mode = 3
@@ -77,6 +113,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Background/StatsContainer/WeightBxStat"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 1
@@ -84,6 +121,24 @@ theme_override_fonts/font = ExtResource("2_jcef5")
 theme_override_font_sizes/font_size = 15
 text = "WEIGHT:
 "
+
+[node name="StatOrb4" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb3" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="StatOrb2" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
+layout_mode = 2
+texture = ExtResource("2_n863o")
+expand_mode = 3
+stretch_mode = 4
 
 [node name="StatOrb" type="TextureRect" parent="Background/StatsContainer/WeightBxStat"]
 layout_mode = 2
@@ -111,12 +166,3 @@ layout_mode = 2
 texture = ExtResource("2_n863o")
 expand_mode = 3
 stretch_mode = 4
-
-[node name="CurrentStatHightlight" type="TextureRect" parent="Background/StatsContainer"]
-modulate = Color(0.380392, 0.352941, 0.227451, 1)
-self_modulate = Color(0.552941, 0.207843, 0.384314, 0.478431)
-z_index = 1
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_vertical = 3
-texture = SubResource("ViewportTexture_2vchw")

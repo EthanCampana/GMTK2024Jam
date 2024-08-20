@@ -25,6 +25,10 @@ var BASE_JUMP_FORCE: int = 255
 var BASE_GRAVITY: int = 900
 var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
+
+func _ready() -> void:
+	label.text = str(current_stat)
+	UiController.emit_signal("stat_start", TOTAL_POINTS)
 var current_weight: int = BASE_WEIGHT 
 
 ## Determines which gravity to use
@@ -35,8 +39,9 @@ func _physics_process(delta):
 	""" Handles all the input functionalities and physics """
 	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
+	var adjusted_speed = BASE_SPEED * (1 + 0.2 * speed_multiplier) / (1 + 0.1 * weight_multiplier)
 	if direction:
-		velocity.x = direction * BASE_SPEED
+		velocity.x = direction * adjusted_speed
 		if is_on_floor():
 			$AnimatedSprite2D.play("run")
 	else:
@@ -108,29 +113,29 @@ func change_stat_value(change: int) -> void:
 	var change_func: Callable = can_increase_stat if change == 1 else can_decrease_stat
 	if current_stat == Stats.SPEED and change_func.call(speed_multiplier):
 		self.speed_multiplier += change
-		UiController.emit_signal("stat_changed", Stats.SPEED, speed_multiplier)
+		UiController.emit_signal("stat_changed", speed_multiplier)
 	elif current_stat == Stats.JUMP and change_func.call(jump_force_multiplier):
 		self.jump_force_multiplier += change
 		self.jump_height = 32 + (8 * self.jump_force_multiplier)
 		self.jump_velocity = ((2.0 * self.jump_height) / self.jump_time_to_peak) * -1
-		UiController.emit_signal("stat_changed", Stats.JUMP, jump_force_multiplier)
+		UiController.emit_signal("stat_changed", jump_force_multiplier)
 	elif current_stat == Stats.WEIGHT and change_func.call(weight_multiplier):
 		self.weight_multiplier += change
 		self.current_weight = BASE_WEIGHT * 1.1 if weight_multiplier == 1 else BASE_WEIGHT * weight_multiplier
-		print(self.current_weight)
+
 		self.jump_time_to_descent = 0.5 + -((BASE_WEIGHT * self.weight_multiplier) / 600.0)
 		self.fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
-		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
+		UiController.emit_signal("stat_changed",weight_multiplier)
 		
-
-
 func _on_area_2d_body_entered(body:Node2D) -> void:
+	if body is DynamicTileMapLayer:
+		body.has_entered_dyanmic_tile = true
+		body.player = self
 	print("hello")
 	if body is Crate:
 		body.P = self
 
-
-
 func _on_area_2d_body_exited(body:Node2D) -> void:
-	if body is Crate:
-		body.P = null 
+	if body is DynamicTileMapLayer:
+		body.has_entered_dyanmic_tile = false 
+		body.player = null 
