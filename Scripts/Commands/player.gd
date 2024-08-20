@@ -8,11 +8,12 @@ enum Stats {SPEED = 0, JUMP = 1, WEIGHT = 2}
 @export var weight_multiplier: int = 0
 @export var current_stat: Stats = Stats.SPEED
 @export var TOTAL_POINTS: int = 4
-@onready var label: Label = $Label
+
 ## Declares the maximum jump height for the player and also the time it takes to reach the peak of the jump and back to the ground again.
 @export var jump_height: float = 32 + (8 * jump_force_multiplier) 
 var jump_time_to_peak: float = 0.3
 var jump_time_to_descent: float = 0.5 + -((BASE_WEIGHT * weight_multiplier) / 6000)
+
 ## Calculate the jump velocity and gravity based on the jump height and time to peak.
 ## Gravity is detirmined by the jump height and time to peak.
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak)* -1
@@ -24,11 +25,7 @@ var BASE_JUMP_FORCE: int = 255
 var BASE_GRAVITY: int = 900
 var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
-var current_weight : int = BASE_WEIGHT
-
-func _ready() -> void:
-	label.text = str(current_stat)
-	print(self.jump_velocity)
+var current_weight: int = BASE_WEIGHT 
 
 ## Determines which gravity to use
 func get_player_gravity() -> float:
@@ -72,12 +69,8 @@ func _physics_process(delta):
 		
 	# increase or decrease stat
 	if Input.is_action_just_pressed("decrease"):
-		print("decrease")
-		print(TOTAL_POINTS)
 		change_stat_value(-1)
 	elif Input.is_action_just_pressed("increase"):
-		print("increase")
-		print(TOTAL_POINTS)
 		change_stat_value(1)
 	move_and_slide()
 
@@ -90,7 +83,6 @@ func set_stat_to_change(vertical_direction: int) -> void:
 		normalized_index += STAT_COUNT
 	
 	current_stat = normalized_index
-	label.text = str(current_stat)
 	UiController.emit_signal("stat_selection_changed",current_stat)
 
 func get_total_points_allocated() -> int:
@@ -125,6 +117,7 @@ func change_stat_value(change: int) -> void:
 	elif current_stat == Stats.WEIGHT and change_func.call(weight_multiplier):
 		self.weight_multiplier += change
 		self.current_weight = BASE_WEIGHT * 1.1 if weight_multiplier == 1 else BASE_WEIGHT * weight_multiplier
+		print(self.current_weight)
 		self.jump_time_to_descent = 0.5 + -((BASE_WEIGHT * self.weight_multiplier) / 600.0)
 		self.fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
@@ -132,9 +125,8 @@ func change_stat_value(change: int) -> void:
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
-	print("body entered")
+	print("hello")
 	if body is Crate:
-		print("crate entered")
 		body.P = self
 
 
