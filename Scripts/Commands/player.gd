@@ -38,8 +38,9 @@ func _physics_process(delta):
 	""" Handles all the input functionalities and physics """
 	# Horizontal movement
 	var direction = Input.get_axis("move_left", "move_right")
+	var adjusted_speed = BASE_SPEED * (1 + 0.2 * speed_multiplier) / (1 + 0.1 * weight_multiplier)
 	if direction:
-		velocity.x = direction * BASE_SPEED
+		velocity.x = direction * adjusted_speed
 		if is_on_floor():
 			$AnimatedSprite2D.play("run")
 	else:
@@ -129,15 +130,11 @@ func change_stat_value(change: int) -> void:
 		self.fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
 		
-
-
 func _on_area_2d_body_entered(body:Node2D) -> void:
 	print("body entered")
 	if body is Crate:
 		print("crate entered")
 		body.P = self
-
-
 
 func _on_area_2d_body_exited(body:Node2D) -> void:
 	if body is Crate:
