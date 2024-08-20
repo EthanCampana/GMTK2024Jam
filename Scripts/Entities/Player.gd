@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 ## Player Controller Following the Command Pattern
-var _controller : PlayerController
 @onready var _controller_container : Node = $ControllerContainer
 
 ## Declares the maximum jump height for the player and also the time it takes to reach the peak of the jump and back to the ground again.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://qtsmdeydb57x"]
+[gd_scene load_steps=20 format=3 uid="uid://doru2kj8itknd"]
 
 [ext_resource type="Script" path="res://Scripts/Commands/player.gd" id="1_h462f"]
 [ext_resource type="Texture2D" uid="uid://btuyca1ol22j7" path="res://Assets/temporary player/04-Fall/Fall 01.png" id="1_rxkqt"]
@@ -89,7 +89,7 @@ animations = [{
 size = Vector2(19, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a7bt7"]
-size = Vector2(1.53846, 40)
+size = Vector2(20, 42.6923)
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(1.3, 1.3)
@@ -114,12 +114,15 @@ shape = SubResource("RectangleShape2D_gx36k")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 12
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 10)
+position = Vector2(-0.769231, 1.34615)
 shape = SubResource("RectangleShape2D_a7bt7")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
