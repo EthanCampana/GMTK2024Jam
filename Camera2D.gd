@@ -1,6 +1,6 @@
 extends Camera2D
 
-@export var tilemap: TileMap
+@export var tilemap: TileMapLayer
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_anchor_mode(Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT)
@@ -32,14 +32,14 @@ func get_camera_zoom_to_tilemap():
 	return Vector2(new_zoom, new_zoom)
 
 func get_tilemap_info():
-	var tile_size = tilemap.get_tileset().tile_size
+	var tile_size = tilemap.tile_set.tile_size
 	
 	#Used area in tilemap horizontally and vertically
 	var tilemap_rect = tilemap.get_used_rect()
 	
 	var tilemap_size = Vector2i(
-		tilemap.rect.end.x - tilemap_rect.position.x,
-		tilemap.rect.end.y - tilemap_rect.position.y
+		tilemap_rect.end.x - tilemap_rect.position.x,
+		tilemap_rect.end.y - tilemap_rect.position.y
 	)
 	
 	return {"size": tilemap_size, "tile_size": tile_size}

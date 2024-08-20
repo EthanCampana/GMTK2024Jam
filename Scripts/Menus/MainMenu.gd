@@ -12,6 +12,7 @@ TODO:
 
 @onready var version_num : Label = $VBoxContainer/MarginContainer/Label
 var settings_menu : PackedScene = preload("res://Scenes/Menus/settings_menu.tscn")
+var first_level : PackedScene = preload("res://Scenes/SomeLevel.tscn")
 
 var sd : SaveData
 
@@ -40,8 +41,11 @@ func _on_settings_pressed():
 
 
 func _on_start_pressed():
-	# Load the main_scene from the save data
-	pass
+	self.visible = false
+	TransitionManager.transition()
+	await TransitionManager.transition_in_finished
+	TransitionManager.transition_out()
+	get_tree().change_scene_to_packed(first_level)
 
 
 func _on_quit_pressed():
