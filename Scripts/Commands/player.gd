@@ -24,6 +24,7 @@ var BASE_JUMP_FORCE: int = 255
 var BASE_GRAVITY: int = 900
 var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
+var current_weight : int = BASE_WEIGHT
 
 func _ready() -> void:
 	label.text = str(current_stat)
@@ -123,6 +124,7 @@ func change_stat_value(change: int) -> void:
 		UiController.emit_signal("stat_changed", Stats.JUMP, jump_force_multiplier)
 	elif current_stat == Stats.WEIGHT and change_func.call(weight_multiplier):
 		self.weight_multiplier += change
+		self.current_weight = BASE_WEIGHT * 1.1 if weight_multiplier == 1 else BASE_WEIGHT * weight_multiplier
 		self.jump_time_to_descent = 0.5 + -((BASE_WEIGHT * self.weight_multiplier) / 600.0)
 		self.fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 		UiController.emit_signal("stat_changed", Stats.WEIGHT, weight_multiplier)
@@ -130,13 +132,13 @@ func change_stat_value(change: int) -> void:
 
 
 func _on_area_2d_body_entered(body:Node2D) -> void:
-	if body is DynamicTileMapLayer:
-		body.has_entered_dyanmic_tile = true
-		body.player = self
+	print("body entered")
+	if body is Crate:
+		print("crate entered")
+		body.P = self
 
 
 
 func _on_area_2d_body_exited(body:Node2D) -> void:
-	if body is DynamicTileMapLayer:
-		body.has_entered_dyanmic_tile = false 
-		body.player = null 
+	if body is Crate:
+		body.P = null 

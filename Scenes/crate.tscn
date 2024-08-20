@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwi0fnvtmn5jy"]
+[gd_scene load_steps=10 format=3 uid="uid://cwi0fnvtmn5jy"]
 
 [ext_resource type="Texture2D" uid="uid://g8rjdwpaxado" path="res://Assets/crate.png" id="1_nncq8"]
+[ext_resource type="Script" path="res://Scripts/crate.gd" id="2_n2r3p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2aeur"]
 atlas = ExtResource("1_nncq8")
@@ -37,7 +38,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t5fqu")
 }],
-"loop": true,
+"loop": false,
 "name": &"Break",
 "speed": 10.0
 }, {
@@ -48,20 +49,28 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hbd4"]
-size = Vector2(17, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58tjl"]
+size = Vector2(17.25, 15.25)
 
-[node name="Crate" type="AnimatedSprite2D"]
-sprite_frames = SubResource("SpriteFrames_gqi76")
-autoplay = "default"
-frame_progress = 0.37406
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Crate" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 3
+script = ExtResource("2_n2r3p")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, 1)
-shape = SubResource("RectangleShape2D_7hbd4")
+[node name="Crate" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_gqi76")
+animation = &"Break"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.25, 3.25)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_58tjl")
