@@ -61,7 +61,7 @@ size = Vector2(17.25, 15.25)
 
 [node name="Crate" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("2_n2r3p")
 
 [node name="Crate" type="AnimatedSprite2D" parent="."]
