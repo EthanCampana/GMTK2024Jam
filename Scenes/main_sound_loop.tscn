@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce2bhq0tgatop"]
+
+[ext_resource type="Script" path="res://main_sound_loop.gd" id="1_rhoog"]
+[ext_resource type="AudioStream" uid="uid://ctwrw56q1ao63" path="res://Assets/Sounds/Stream Loops 2024-05-22.wav" id="2_leo8q"]
+
+[node name="Main_Sound_Loop" type="Node2D"]
+script = ExtResource("1_rhoog")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_leo8q")

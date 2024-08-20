@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://c7eu53m8sh43h"]
+[gd_scene load_steps=7 format=4 uid="uid://dmhfnsqr7w1qd"]
 
 [ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="1_y7ddj"]
 [ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="2_uaxja"]
 [ext_resource type="PackedScene" uid="uid://doru2kj8itknd" path="res://Scenes/player.tscn" id="3_8gssb"]
 [ext_resource type="PackedScene" uid="uid://crf4a3if4ugyh" path="res://Scenes/UIs/u_interface.tscn" id="4_rwsdv"]
 [ext_resource type="PackedScene" uid="uid://cwi0fnvtmn5jy" path="res://Scenes/crate.tscn" id="5_g6e4l"]
-[ext_resource type="PackedScene" uid="uid://dlwuklo8aevc6" path="res://Scenes/flag.tscn" id="6_hiji3"]
+[ext_resource type="PackedScene" uid="uid://d2p3yfygwhgk" path="res://Scenes/flag.tscn" id="6_hiji3"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,11 +24,6 @@ tile_map_data = PackedByteArray("AACy/woAAQAAAAcAAACz/woAAQAIAAYAAAC0/woAAQAGAAU
 
 [node name="Player" parent="." instance=ExtResource("3_8gssb")]
 position = Vector2(113, 136)
-speed_multiplier = 0
-jump_force_multiplier = 0
-weight_multiplier = 0
-current_stat = 0
-TOTAL_POINTS = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -26.1538)

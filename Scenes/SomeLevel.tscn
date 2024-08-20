@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bqyg13ux2qbur"]
+[gd_scene load_steps=7 format=4 uid="uid://ddlhgb1tiu2q8"]
 
 [ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="1_a707j"]
 [ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="2_8glle"]
 [ext_resource type="PackedScene" uid="uid://doru2kj8itknd" path="res://Scenes/player.tscn" id="3_u3mvo"]
 [ext_resource type="PackedScene" uid="uid://crf4a3if4ugyh" path="res://Scenes/UIs/u_interface.tscn" id="4_jrjcv"]
-[ext_resource type="PackedScene" uid="uid://dlwuklo8aevc6" path="res://Scenes/flag.tscn" id="5_n1i08"]
-[ext_resource type="PackedScene" uid="uid://c7eu53m8sh43h" path="res://Scenes/SomeLevel2.tscn" id="6_k5r6u"]
+[ext_resource type="PackedScene" uid="uid://d2p3yfygwhgk" path="res://Scenes/flag.tscn" id="5_n1i08"]
+[ext_resource type="PackedScene" uid="uid://dmhfnsqr7w1qd" path="res://Scenes/SomeLevel2.tscn" id="6_k5r6u"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -24,11 +24,6 @@ tile_map_data = PackedByteArray("AACy/woAAQAAAAcAAACz/woAAQABAAgAAAC0/woAAQAEAAg
 
 [node name="Player" parent="." instance=ExtResource("3_u3mvo")]
 position = Vector2(33, 295)
-speed_multiplier = 0
-jump_force_multiplier = 0
-weight_multiplier = 0
-current_stat = 0
-TOTAL_POINTS = 4
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0

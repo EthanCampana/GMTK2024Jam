@@ -20,7 +20,9 @@ var jump_time_to_descent: float = 0.5 + -((BASE_WEIGHT * weight_multiplier) / 60
 @onready var jump_velocity : float = ((2.0 * jump_height) / jump_time_to_peak)* -1
 @onready var jump_gravity : float = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1
 @onready var fall_gravity : float = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
-@onready var audio = $AudioStreamPlayer2D
+@onready var addStat_audio = $Add_Stat_Sound
+@onready var deductStat_audio = $Deduct_Stat_Sound
+@onready var jump_audio = $Jump_Sound
 
 var BASE_SPEED: int = 180
 var BASE_JUMP_FORCE: int = 2551
@@ -62,7 +64,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity 
 		$AnimatedSprite2D.play("jump")
-		self.audio.play()
+		self.jump_audio.play()
 		
 	# Scroll through the stats
 	if Input.is_action_just_pressed("stat_up"):
@@ -73,8 +75,10 @@ func _physics_process(delta):
 	# increase or decrease stat
 	if Input.is_action_just_pressed("decrease"):
 		change_stat_value(-1)
+		self.addStat_audio.play()
 	elif Input.is_action_just_pressed("increase"):
 		change_stat_value(1)
+		self.deductStat_audio.play()
 	move_and_slide()
 
 func set_stat_to_change(vertical_direction: int) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://qtsmdeydb57x"]
+[gd_scene load_steps=24 format=3 uid="uid://doru2kj8itknd"]
 
 [ext_resource type="Script" path="res://Scripts/Commands/player.gd" id="1_h462f"]
 [ext_resource type="Texture2D" uid="uid://btuyca1ol22j7" path="res://Assets/temporary player/04-Fall/Fall 01.png" id="1_rxkqt"]
@@ -17,6 +17,9 @@
 [ext_resource type="Texture2D" uid="uid://dspvlynv2st3p" path="res://Assets/temporary player/02-Run/Run 05.png" id="9_u6r6q"]
 [ext_resource type="Texture2D" uid="uid://b8aasq5i75n62" path="res://Assets/temporary player/02-Run/Run 06.png" id="10_h4t3q"]
 [ext_resource type="AudioStream" uid="uid://bpd7g6sj7bk2e" path="res://Assets/Sounds/Jump 1.wav" id="17_3fbk2"]
+[ext_resource type="AudioStream" uid="uid://gt3usgpui25w" path="res://Assets/Sounds/Text 1.wav" id="18_7j282"]
+[ext_resource type="AudioStream" uid="uid://c6ldtq82tmw46" path="res://Assets/Sounds/Cancel 1.wav" id="19_370oq"]
+[ext_resource type="PackedScene" uid="uid://ce2bhq0tgatop" path="res://Scenes/main_sound_loop.tscn" id="20_57vmt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mrkve"]
 animations = [{
@@ -120,10 +123,16 @@ shape = SubResource("RectangleShape2D_a7bt7")
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="Jump_Sound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("17_3fbk2")
+
+[node name="Add_Stat_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_7j282")
+
+[node name="Deduct_Stat_Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_370oq")
+
+[node name="Main_Sound_Loop" parent="." instance=ExtResource("20_57vmt")]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_3fbk2")
