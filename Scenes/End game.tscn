@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b02wain4rper0"]
+
+[ext_resource type="FontFile" uid="uid://day3wrs7kmuab" path="res://Assets/FFFFORWA.TTF" id="1_4hv4e"]
+
+[sub_resource type="Gradient" id="Gradient_t1ild"]
+offsets = PackedFloat32Array(0, 0.99026)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0x10f"]
+gradient = SubResource("Gradient_t1ild")
+
+[node name="EndGame" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 652.0
+offset_bottom = 504.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+offset_right = 650.0
+offset_bottom = 508.0
+texture = SubResource("GradientTexture2D_0x10f")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+offset_left = 114.0
+offset_top = 212.0
+offset_right = 622.0
+offset_bottom = 300.0
+theme_override_fonts/normal_font = ExtResource("1_4hv4e")
+theme_override_font_sizes/normal_font_size = 40
+text = "To be continue..."

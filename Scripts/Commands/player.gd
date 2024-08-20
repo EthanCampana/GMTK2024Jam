@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
+var isAlive = true
 enum Stats {SPEED = 0, JUMP = 1, WEIGHT = 2}
 # These are values that can change based on the stats
 @export var speed_multiplier: int = 0
@@ -27,7 +28,7 @@ var BASE_WEIGHT: int = 60
 var STAT_COUNT: int = len(Stats)
 
 func _ready() -> void:
-	label.text = str(current_stat)
+	#label.text = str(current_stat)
 	UiController.emit_signal("stat_start", TOTAL_POINTS)
 var current_weight: int = BASE_WEIGHT 
 

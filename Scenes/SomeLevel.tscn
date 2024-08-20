@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=4 uid="uid://bqyg13ux2qbur"]
+[gd_scene load_steps=9 format=4 uid="uid://bqyg13ux2qbur"]
 
 [ext_resource type="Texture2D" uid="uid://t14sow4m3d72" path="res://Assets/Background/Background.png" id="1_a707j"]
 [ext_resource type="PackedScene" uid="uid://cnb6jcfxfsb4v" path="res://Scenes/dynamic_tile_map_layer.tscn" id="2_8glle"]
 [ext_resource type="PackedScene" uid="uid://doru2kj8itknd" path="res://Scenes/player.tscn" id="3_u3mvo"]
 [ext_resource type="PackedScene" uid="uid://crf4a3if4ugyh" path="res://Scenes/UIs/u_interface.tscn" id="4_jrjcv"]
-[ext_resource type="PackedScene" uid="uid://dlwuklo8aevc6" path="res://Scenes/flag.tscn" id="5_n1i08"]
+[ext_resource type="PackedScene" uid="uid://u1jvigtsicq6" path="res://Scenes/flag.tscn" id="5_n1i08"]
 [ext_resource type="PackedScene" uid="uid://c7eu53m8sh43h" path="res://Scenes/SomeLevel2.tscn" id="6_k5r6u"]
+[ext_resource type="FontFile" uid="uid://day3wrs7kmuab" path="res://Assets/FFFFORWA.TTF" id="7_cohu1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kef76"]
+font = ExtResource("7_cohu1")
 
 [node name="Node2D" type="Node2D"]
 
@@ -47,3 +51,11 @@ metadata/_edit_use_anchors_ = true
 [node name="Flag" parent="." instance=ExtResource("5_n1i08")]
 position = Vector2(1180, 103)
 LevelToLoad = ExtResource("6_k5r6u")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 19.0
+offset_top = 165.0
+offset_right = 487.0
+offset_bottom = 187.0
+text = "Change the Jump Stat To Reach New Heights!"
+label_settings = SubResource("LabelSettings_kef76")

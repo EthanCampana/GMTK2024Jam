@@ -33,4 +33,3 @@ func _physics_update(delta: float):
 		player.emit_signal("change_state","Move",{})
 	elif player.velocity.x == 0 and player.is_on_floor():
 		player.emit_signal("change_state","Idle",{})
-
