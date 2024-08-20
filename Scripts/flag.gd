@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var LevelToLoad : PackedScene
+@onready var audio = $AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,4 +19,5 @@ func _on_area_2d_body_entered(body:Node2D) -> void:
 	TransitionManager.transition()
 	await TransitionManager.transition_in_finished
 	TransitionManager.transition_out()
+	self.audio.play()
 	get_tree().change_scene_to_packed(LevelToLoad)
